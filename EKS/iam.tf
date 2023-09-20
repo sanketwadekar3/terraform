@@ -14,8 +14,9 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "eks_cluster_iam_role" {
-  name               = var.eks_cluster_iam_role
+  name               = var.cluster_iam_role
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  tags               = (merge(var.tags, var.common_tags))
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSClusterPolicy" {
@@ -43,6 +44,8 @@ resource "aws_iam_role" "node_group_iam_role" {
     }]
     Version = "2012-10-17"
   })
+
+  tags = (merge(var.tags, var.common_tags))
 }
 
 resource "aws_iam_role_policy_attachment" "AmazonEKSWorkerNodePolicy" {

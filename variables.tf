@@ -1,106 +1,74 @@
-// Variables for backend and provider
-
-variable "s3_bucket_name" {
-  type        = string
-  description = "Name of the backend s3 bucket."
-}
+#######################################################################
+// Variables for provider
+#######################################################################
 
 variable "region" {
   type        = string
   description = "AWS region"
 }
 
-// Variables for EKS Cluster
+#######################################################################
+// Common Variables
+#######################################################################
 
-variable "eks_cluster_name" {
-  type        = string
-  description = "Name of the EKS Cluster"
+variable "tags" {
+
 }
 
-variable "endpoint_private_access" {
+variable "create_msk_cluster" {
   type        = bool
-  description = "Provide True for private access otherwise False."
+  description = "True if you want to create MSK cluster else False"
+  default     = true
 }
 
-variable "endpoint_public_access" {
+variable "create_dms" {
   type        = bool
-  description = "Provide True for public access otherwise False."
+  description = "True if you want to create DMS else False"
+  default     = false
 }
 
-variable "k8s_version" {
-  type        = string
-  description = "K8s version"
+variable "create_opensearch" {
+  type        = bool
+  description = "True if you want to create DMS else False"
+  default     = false
 }
 
-// Variables for EKS node group
+#######################################################################
+//
+#######################################################################
 
-variable "eks_node_group_name_prefix" {
-  type        = string
-  description = "EKS node group name prefix"
+variable "EKS" {
+
 }
 
-variable "node_group_desired_size" {
-  type        = number
-  description = "Desired size for the node group instances."
+variable "EKS_auth" {
+
 }
 
-variable "node_group_min_size" {
-  type        = number
-  description = "Minimum size for the node group instances."
+variable "MSK" {
+
 }
 
-variable "node_group_max_size" {
-  type        = number
-  description = "Maximum size for the node group instances."
+variable "RDS" {
+
 }
 
-variable "node_group_capacity_type" {
-  type        = string
-  description = "Capacity type for node group instances."
+variable "IAM" {
+
 }
 
-variable "node_group_disk_size" {
-  type        = number
-  description = "Disk size of node group instances."
+variable "S3" {
+
 }
 
-variable "node_group_instance_types" {
-  type        = string
-  description = "Node group instance type."
+variable "IAM_service_account" {
+
 }
 
-// Variables for EKS IAM roles
+variable "DMS" {
 
-variable "eks_cluster_iam_role" {
-  type        = string
-  description = "EKS cluster iam role name."
 }
 
-variable "node_group_iam_role" {
-  type        = string
-  description = "EKS Node group iam role name."
-}
+variable "Opensearch" {
 
-// Variables for EKS security group
-
-variable "eks_sg_name" {
-  type        = string
-  description = "Name of the EKS security group."
-}
-
-variable "eks_sg_port" {
-  type        = number
-  description = "Port number to be opened for security group."
-  default     = 443
-}
-
-variable "eks_sg_protocol" {
-  type        = string
-  description = "Protocol for the security group."
-  default     = "tcp"
-}
-
-variable "eks_sg_cidr" {
-  type        = list(string)
-  description = "CIDR block for EKS security group."
 }
